@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class Contact extends Model
 {
     use HasFactory;
 
@@ -15,8 +15,8 @@ class User extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'first_name',
-        'last_name',
-        'blocked',
+        'phone',
+        'type',
+        'user_id',
     ];
 }
