@@ -13,7 +13,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'blocked' => 'boolean',
+            'blocked' => 'in:true,false',
             'limit' => 'integer|min:1',
             'page' => 'integer|min:0',
         ]);
@@ -36,6 +36,10 @@ class UserController extends Controller
                 $subquery->where('first_name', 'like', "%$search%");
                 $subquery->orWhere('last_name', 'like', "%$search%");
             });
+        }
+        if (!empty($blocked)) {
+            $blocked = $request->boolean('blocked');
+            $query->where('blocked', $blocked ? '1' : '0');
         }
         if (!empty($limit)) {
             $limit = intval($limit);
@@ -69,7 +73,7 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             'first_name' => 'required|min:1',
             'last_name' => 'min:1',
-            'blocked' => 'required|boolean',
+            'blocked' => 'required|in:true,false',
         ]);
 
         if ($validator->fails()) {
