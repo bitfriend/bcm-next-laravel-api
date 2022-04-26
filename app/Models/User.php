@@ -19,4 +19,13 @@ class User extends Model
         'last_name',
         'blocked',
     ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'blocked' => 'boolean',
+    ];
 }

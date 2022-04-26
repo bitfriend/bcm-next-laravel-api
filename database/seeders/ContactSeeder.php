@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Brick\PhoneNumber\PhoneNumber;
 use Illuminate\Database\Seeder;
 
 use App\Models\Contact;
@@ -22,7 +21,7 @@ class ContactSeeder extends Seeder
 
         for ($i = 0; $i < 30; $i++) {
             Contact::create([
-                'phone' => PhoneNumber::getExampleNumber('US'),
+                'phone' => random_int(1000000000, 9999999999),
                 'type' => $faker->randomElement(['Home', 'Office']),
                 'user_id' => $faker->numberBetween(0, 9),
             ]);
